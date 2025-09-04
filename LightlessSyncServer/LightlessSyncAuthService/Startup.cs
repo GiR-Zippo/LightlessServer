@@ -1,23 +1,24 @@
-﻿using LightlessSyncAuthService.Controllers;
+﻿using LightlessAuthService.Services;
+using LightlessSyncAuthService.Controllers;
+using LightlessSyncAuthService.Services;
+using LightlessSyncShared.Data;
 using LightlessSyncShared.Metrics;
+using LightlessSyncShared.RequirementHandlers;
 using LightlessSyncShared.Services;
 using LightlessSyncShared.Utils;
+using LightlessSyncShared.Utils.Configuration;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Controllers;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Prometheus;
+using StackExchange.Redis;
+using StackExchange.Redis.Extensions.Core.Abstractions;
 using StackExchange.Redis.Extensions.Core.Configuration;
 using StackExchange.Redis.Extensions.System.Text.Json;
-using StackExchange.Redis;
 using System.Net;
-using LightlessSyncAuthService.Services;
-using LightlessSyncShared.RequirementHandlers;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using LightlessSyncShared.Data;
-using Microsoft.EntityFrameworkCore;
-using Prometheus;
-using LightlessSyncShared.Utils.Configuration;
-using StackExchange.Redis.Extensions.Core.Abstractions;
 
 namespace LightlessSyncAuthService;
 
@@ -67,6 +68,7 @@ public class Startup
         ConfigureRedis(services, lightlessConfig);
 
         services.AddSingleton<SecretKeyAuthenticatorService>();
+        services.AddSingleton<AccountRegistrationService>();
         services.AddSingleton<GeoIPService>();
 
         services.AddHostedService(provider => provider.GetRequiredService<GeoIPService>());

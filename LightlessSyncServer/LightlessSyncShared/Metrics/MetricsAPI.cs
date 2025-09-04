@@ -46,6 +46,7 @@ public class MetricsAPI
     public const string GaugeUserPairCacheEntries = "lightless_pairscache_entries";
     public const string CounterUserPairCacheNewEntries = "lightless_pairscache_new_entries";
     public const string CounterUserPairCacheUpdatedEntries = "lightless_pairscache_updated_entries";
+    public const string CounterAccountsCreated = "mare_accounts_created";
     public const string GaugeGposeLobbies = "lightless_gpose_lobbies";
     public const string GaugeGposeLobbyUsers = "lightless_gpose_lobby_users";
     public const string GaugeHubConcurrency = "lightless_free_concurrent_hub_calls";

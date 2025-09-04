@@ -10,6 +10,8 @@ public class AuthServiceConfiguration : LightlessConfigurationBase
     public int TempBanDurationInMinutes { get; set; } = 5;
     public List<string> WhitelistedIps { get; set; } = new();
     public Uri PublicOAuthBaseUri { get; set; } = null;
+    public int RegisterIpLimit { get; set; } = 3;
+    public int RegisterIpDurationInMinutes { get; set; } = 10;
     public string? DiscordOAuthClientSecret { get; set; } = null;
     public string? DiscordOAuthClientId { get; set; } = null;
     public override string ToString()
@@ -19,6 +21,8 @@ public class AuthServiceConfiguration : LightlessConfigurationBase
         sb.AppendLine($"{nameof(RedisPool)} => {RedisPool}");
         sb.AppendLine($"{nameof(GeoIPDbCityFile)} => {GeoIPDbCityFile}");
         sb.AppendLine($"{nameof(UseGeoIP)} => {UseGeoIP}");
+        sb.AppendLine($"{nameof(RegisterIpLimit)} => {RegisterIpLimit}");
+        sb.AppendLine($"{nameof(RegisterIpDurationInMinutes)} => {RegisterIpDurationInMinutes}");
         return sb.ToString();
     }
 }
